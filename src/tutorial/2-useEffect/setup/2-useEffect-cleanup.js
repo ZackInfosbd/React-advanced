@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-// cleanup function
+// useEffect Basics
 // second argument
+// cleanup function
 
 // without clean up function
 // const UseEffectCleanup = () => {
@@ -61,4 +62,26 @@ const UseEffectCleanup = () => {
     </>
   );
 };
+
+/*
+//  with cleanup function:
+* in this example we did use the cleanipfunction:
+if you check element/ eventlistener you find a limited number of event 
+listener on the window object done by our useEffect + useState - setSize, 
+also a lot of logs of "clean up", and that's protect the memory from leaking
+in big projects.
+
+    // well, you could say, we do not need the clean up function, and we can
+    just use useEffect on initial render, well technically you are right.
+    but the clean up function are very important when it comes to dealing
+    with the component, appearing and disappearing - meaning - there will be 
+    conditional rendering beacuse at the moment and in our last example
+    the component is all the time on the screen, and does not allow us to see
+    the real use of the cleanup function.
+
+    Important!!!
+    each time we set a useEffect is considred as good practice to incluse 
+    the cleanup function.
+    
+*/
 export default UseEffectCleanup;
