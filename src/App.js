@@ -1,5 +1,5 @@
 import React from "react";
-import SetUp from "./tutorial/1-useState/setup/3-useState-array";
+import SetUp from "./tutorial/2-useEffect/setup/2-useEffect-cleanup";
 function App() {
   return (
     <div className="container">
