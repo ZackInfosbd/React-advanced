@@ -21,3 +21,10 @@ const Index = () => {
 }
 
 export default Index
+
+/*
+  * PropTypes allow us to validate our props we are passing, means that 
+some of our objects have not some given properties as the rest of the objects
+     1 - that's why we need to set up some props types to check that for me
+     2 - set up some default values or short-ciruit operators.
+*/
