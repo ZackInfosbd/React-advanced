@@ -28,3 +28,8 @@ const Example = () => {
 }
 
 export default Example
+
+/*
+	* Custom hooks allow us to reuse the functionality, wether fetching data 
+  or saving to local storage..etc.
+*/
