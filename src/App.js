@@ -1,5 +1,5 @@
 import React from "react";
-import SetUp from "./tutorial/10-prop-types/setup/index";
+import SetUp from "./tutorial/11-react-router/setup/index";
 function App() {
   return (
     <div className="container">
