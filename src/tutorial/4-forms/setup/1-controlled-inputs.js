@@ -67,14 +67,46 @@ const ControlledInputs = () => {
 
 export default ControlledInputs;
 
+/*  form Basics:
+  * there are two ways to setup the submitHandler in the form, wether through
+      1 - on the level of the <form onSubmit={handlerSubmit}></form>
+      2 - on the level of the button with onClick={handlerSubmit}
+      3 - the handler submit in both scenarios has to have event parameter:
+      (e) to get the access of each property or method of this object
+*/
+/*
+  * to access the data in the inputs there actually 03 ways clear for me now:
+
+      // 1 - controlled inputs - value, onChange - (e.target.value)
+          - value: which are hold by the input to be controlled.
+          - onChange: method that will controle the values and each time we type
+          something in the form will fire that function and within that function
+          we will set up the state value and that in return u ll see it in the 
+          form as well.
+          // connect the inputs to state values: 
+          value = {stateValue}
+         // set the onChange 
+         onchange = {(e)=> setValue(e.target.value)
+
+
+      // 2 -  multiple inputs:
+      * we can have multiple inputs with the same onChange handler, in case
+      we have many many inputs and the whole idea is to show how we would 
+      deal with 10 inputs for example and do not want have 10 different functions
+      that we call inside of the handler 
+
+
+      // 3 - useRef Hook
+*/
+
+/* 
+  * when you have some problems with the warning: Each child in a list should 
+  have a unique "key" prop you can use some dedicated helper packages like
+  youyouID 
+   */
+
 /*
   * in React we can submit the form in two ways:
   // onSubmit on the level of the form 
   // submit the form on the level of the button of type="submit" and 
-  the callback function */
-
-/*
-  // connect the inputs to state values: 
-  value = {stateValue}
-  // set the onChange 
-  onchange = {(e)=> setValue(e.target.value)*/
+  the callback function onClick */
