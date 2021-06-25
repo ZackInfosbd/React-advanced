@@ -75,7 +75,8 @@ export default ControlledInputs;
       (e) to get the access of each property or method of this object
 */
 /*
-  * to access the data in the inputs there actually 03 ways clear for me now:
+  * in React we can submit the form in two ways:
+    - to access the data in the inputs there actually 03 ways clear for me now:
 
       // 1 - controlled inputs - value, onChange - (e.target.value)
           - value: which are hold by the input to be controlled.
@@ -89,7 +90,7 @@ export default ControlledInputs;
          onchange = {(e)=> setValue(e.target.value)
 
 
-      // 2 -  multiple inputs:
+      // 2 -  uncontrolled - multiple inputs:
       * we can have multiple inputs with the same onChange handler, in case
       we have many many inputs and the whole idea is to show how we would 
       deal with 10 inputs for example and do not want have 10 different functions
@@ -97,16 +98,18 @@ export default ControlledInputs;
 
 
       // 3 - useRef Hook
+       * Remember when we talk about forms that we have controlled inputs, 
+      but we also have the option of using uncontrolled inputs and we do 
+      that using the  useRef. 
+        * so even though there are multiple things that we can do with useRef, most 
+        popular, one is targeting the DOM element and essentially in turn that 
+        allows us to set up uncontrolled inputs similar to how we would have it in 
+        JavaScript.
+      * the most used usecase is targetig DOM nodes/elements.
 */
 
 /* 
-  * when you have some problems with the warning: Each child in a list should 
+  when you have some problems with the warning: Each child in a list should 
   have a unique "key" prop you can use some dedicated helper packages like
   youyouID 
-   */
-
-/*
-  * in React we can submit the form in two ways:
-  // onSubmit on the level of the form 
-  // submit the form on the level of the button of type="submit" and 
-  the callback function onClick */
+*/
