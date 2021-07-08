@@ -2,7 +2,10 @@ import React, { useState, useReducer } from "react";
 import Modal from "./Modal";
 import { data } from "../../../data";
 import { reducer } from "./reducer";
+
 // using useState - simple state value
+// ###################################
+
 // const Index = () => {
 //   const [name, setName] = useState("");
 //   const [people, setPeople] = useState(data);
@@ -12,12 +15,13 @@ import { reducer } from "./reducer";
 //     e.preventDefault();
 //     if (name) {
 //       setShowModal(true);
-//       setPeople([...people, { id: new Date.getTime().toString(), name }]);
+//       setPeople([...people, { id: new Date().getTime().toString(), name }]);
 //       setName("");
 //     } else {
 //       setShowModal(true);
 //     }
 //   };
+
 //   return (
 //     <>
 //       {showModal && <Modal />}
@@ -29,7 +33,7 @@ import { reducer } from "./reducer";
 //             onChange={(e) => setName(e.target.value)}
 //           />
 //         </div>
-//         <button type="submit">add</button>
+//         <button type="submit">add person</button>
 //       </form>
 //       {people.map((person) => {
 //         return (
@@ -42,14 +46,29 @@ import { reducer } from "./reducer";
 //   );
 // };
 
+// export default Index;
+
+/*
+  * notice here how we have no problems changing state values however we would 
+  like. That's not usually a best use case.
+  If you have a bigger app and if you work as a team, you would want to have 
+  some kind of guardrails where you're only updating the state in a certain 
+  way.So that way everyone is on the same page.
+*/
+
 // reducer function - refactoring
+// ##############################
+
 // basic useReducer
+
 // const reducer = (state, action) => {};
+
 // const defaultState = {
-//   people: data,
+//   people: [],
 //   isModalOpen: false,
 //   modalContent: " ",
 // };
+
 // const Index = () => {
 //   const [name, setName] = useState("");
 //   const [state, dispatch] = useReducer(reducer, defaultState);
@@ -84,7 +103,10 @@ import { reducer } from "./reducer";
 //   );
 // };
 
+// export default Index;
+
 // Add Item
+// ########
 
 // const reducer = (state, action) => {
 //   if (action.type === "ADD_ITEM") {
@@ -146,7 +168,10 @@ import { reducer } from "./reducer";
 //   );
 // };
 
+// export default Index;
+
 // Remove Item
+// ###########
 
 const defaultState = {
   people: data,
@@ -208,7 +233,7 @@ const Index = () => {
 export default Index;
 
 /*
-  * Now use their hook is used whenever we have a more complicated setup as 
+  * Now useReducer hook is used whenever we have a more complicated setup as 
   far as the state.
 
   *  if you have like a to do list or something like that, I think you're 
