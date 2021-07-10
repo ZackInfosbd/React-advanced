@@ -1,41 +1,44 @@
-import React from 'react';
+import React from "react";
 // react router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // pages
-import Home from './Home';
-import About from './About';
-import People from './People';
-import Error from './Error';
-import Person from './Person';
+import Home from "./Home";
+import About from "./About";
+import People from "./People";
+import Error from "./Error";
+import Person from "./Person";
 // navbar
-import Navbar from './Navbar';
+import Navbar from "./Navbar";
 const ReactRouterSetup = () => {
-  return <Router>
-    <Navbar/>
-    <Switch>
-      <Route exact path="/">
-        <Home/>
-      </Route>
-      <Route path="/about">
-        <About/>
-      </Route>
-      <Route path="/people">
-        <People/>
-      </Route>
-      <Route path="/person/:id" children={<Person/>}>
-        <Person/>
-      </Route>
-      <Route  path="*">
-        <Error/>
-      </Route>
-    </Switch>
-  </Router>;
+  return (
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/people">
+          <People />
+        </Route>
+        <Route path="/person/:id" children={<Person />}>
+          <Person />
+        </Route>
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+    </Router>
+  );
 };
 
 export default ReactRouterSetup;
 
 /*
-  * to use the react routing, you need install the package.
+  * to use the react routing, you need install the external package.
+  -  npm install react-router-dom
   * later then wrape the whole APP in Router in app.js or index.js
   * to navigate to your exact page you need add eaxct prop to the Route of 
   the Home Page, or you can do it on lthe level of each nested route if there 
