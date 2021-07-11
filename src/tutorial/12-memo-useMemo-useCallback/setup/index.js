@@ -7,10 +7,32 @@ const url = "https://course-api.com/javascript-store-products";
 
 // every time props or state changes, component re-renders
 
+const calculateMostExpensive = (data) => {
+  console.log("helo");
+  return (
+    data.reduce((total, item) => {
+      const price = item.fields.price;
+      if (price >= total) {
+        total = price;
+      }
+      return total;
+    }, 0) / 100
+  );
+};
+
 const Index = () => {
   const { products } = useFetch(url);
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState(0);
+
+  const addToCart = useCallback(() => {
+    setCart(cart + 1);
+  }, [cart]);
+
+  const mostExpensive = useMemo(
+    () => calculateMostExpensive(products),
+    [products]
+  );
 
   return (
     <>
@@ -18,26 +40,33 @@ const Index = () => {
       <button className="btn" onClick={() => setCount(count + 1)}>
         click me
       </button>
-
-      <BigList products={products} />
+      <h1 style={{ marginTop: "3rem" }}>cart:{cart} </h1>
+      <h1>most expensive : $ {mostExpensive}</h1>
+      <BigList products={products} addToCart={addToCart} />
     </>
   );
 };
 
-const BigList = React.memo(({ products }) => {
+const BigList = React.memo(({ products, addToCart }) => {
   useEffect(() => {
     console.log("big List called");
   }, []);
   return (
     <section className="products">
       {products.map((product) => {
-        return <SingleProduct key={product.id} {...product}></SingleProduct>;
+        return (
+          <SingleProduct
+            key={product.id}
+            {...product}
+            addToCart={addToCart}
+          ></SingleProduct>
+        );
       })}
     </section>
   );
 });
 
-const SingleProduct = ({ fields }) => {
+const SingleProduct = ({ fields, addToCart }) => {
   useEffect(() => {
     console.count("single item called");
   }, []);
@@ -50,6 +79,7 @@ const SingleProduct = ({ fields }) => {
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>${price}</p>
+      <button onCanPlay={addToCart}>add to cart</button>
     </article>
   );
 };
@@ -69,7 +99,10 @@ export default Index;
 // useCallback Hook
 /*
   * do almost the same like React.memo method,except this time we are about
-  achieving it with a Hook.
+  dealing with the function where it is going to check if the value of the 
+  function changed or not  achieving it with a Hook. - if the value is not 
+  changed then dont need to re-create the function from the scratch.
+ 
   * to avoid re-creating the function from the scratch while re-rendering 
   we just invoke the hook useCallback on the function/props or state. 
 
