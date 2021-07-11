@@ -1,79 +1,59 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import { useFetch } from '../../9-custom-hooks/final/2-useFetch'
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { useFetch } from "../../9-custom-hooks/final/2-useFetch";
 
 // ATTENTION!!!!!!!!!!
 // I SWITCHED TO PERMANENT DOMAIN
-const url = 'https://course-api.com/javascript-store-products'
+const url = "https://course-api.com/javascript-store-products";
 
 // every time props or state changes, component re-renders
 
-const calculateMostExpensive = (data) => {
-  console.log('hello');
-  return data.reduce((total,item)=> {
-    const price = item.fields.price 
-    if(price>=total){
-      total = price
-    }
-    return total
-  },0) / 100
-}
-
 const Index = () => {
-  const { products } = useFetch(url)
-  const [count, setCount] = useState(0)
-  const [cart,setCart] = useState(0)
-
-  const addToCart = useCallback(()=> {
-    console.log(cart);
-    setCart(cart + 1)
-  },[cart])
-
-  const mostExpensive = useMemo(()=>calculateMostExpensive(products),[products])
+  const { products } = useFetch(url);
+  const [count, setCount] = useState(0);
+  const [cart, setCart] = useState(0);
 
   return (
     <>
       <h1>Count : {count}</h1>
-      <button className='btn' onClick={() => setCount(count + 1)}>
+      <button className="btn" onClick={() => setCount(count + 1)}>
         click me
       </button>
-      <h1 style={{marginTop:"3rem"}}>cart: {cart}</h1>
-      <h1>Most expensive: ${mostExpensive}</h1>
-      <BigList products={products} addToCart={addToCart} />
-    </>
-  )
-}
 
-const BigList = ({ products, addToCart }) => {
-  useEffect(()=> {
-    console.log('Big List called');
-  })
+      <BigList products={products} />
+    </>
+  );
+};
+
+const BigList = ({ products }) => {
+  useEffect(() => {
+    console.log("big List called");
+  }, []);
   return (
-    <section className='products'>
+    <section className="products">
       {products.map((product) => {
-        return <SingleProduct key={product.id} {...product} addToCart={addToCart}></SingleProduct>
+        return <SingleProduct key={product.id} {...product}></SingleProduct>;
       })}
     </section>
-  )
-}
+  );
+};
 
-const SingleProduct = React.memo(({ fields,addToCart }) => {
-  useEffect(()=> {
-    console.count('Single Product called');
-  })
-  let { name, price } = fields
-  price = price / 100
-  const image = fields.image[0].url
+const SingleProduct = ({ fields }) => {
+  useEffect(() => {
+    console.count("single item called");
+  }, []);
+  let { name, price } = fields;
+  price = price / 100;
+  const image = fields.image[0].url;
 
   return (
-    <article className='product'>
+    <article className="product">
       <img src={image} alt={name} />
       <h4>{name}</h4>
       <p>${price}</p>
-      <button onClick={addToCart}>add to cart</button>
     </article>
-  )
-})
-export default Index
+  );
+};
+export default Index;
 
 // React Method React.memo - be looking for the props
 /*
@@ -81,11 +61,11 @@ export default Index
   in the useState value, and as we know that useState Hook:
     - preserve the values between the re-renders: 
     - trigger the render
-  so in the presebce of the React.memo, it will keep checking..it is
+  so in the presence of the React.memo, it will keep checking..it is
   memoising, well it will check for us props values, if they changed or not
   if not then will not triggering the renders, as we said each time the props
   is changed then the component re-renders. */
-  
+
 // useCallback Hook
 /*
   * do almost the same like React.memo method,except this time we are about
